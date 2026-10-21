@@ -57,7 +57,7 @@ public struct ImportProgramsView: View {
 
     /// A checked program's chosen destination, before resolving into the
     /// app's internal bank/patch addressing.
-    private struct Destination {
+    private struct Destination: Equatable {
         var letter: Int
         var slot: Int
     }
@@ -75,6 +75,17 @@ public struct ImportProgramsView: View {
     @State private var activeBank = 0
     /// The slot (within `activeBank`) whose reassign/remove popover is open.
     @State private var popoverSlot: Int?
+
+    /// Memoized `autoAssignments`/`importedByID` — both are recomputed only
+    /// when `selectedIDs`, `destinations`, or `imported` actually change,
+    /// not on every call. Without this, a full 128-program bank import
+    /// hung at ~95% CPU: `destination(for:)` is called from every row on
+    /// every render, and each call used to redo the whole O(slots × n)
+    /// auto-assignment scan from scratch (plus an O(n) linear `imported`
+    /// lookup per call on top of that) — live-measured at roughly 5×10⁸
+    /// steps for a full bank.
+    @State private var cachedAutoAssignments: [ProgramFileImport.ImportedProgram.ID: Destination] = [:]
+    @State private var importedByID: [ProgramFileImport.ImportedProgram.ID: ProgramFileImport.ImportedProgram] = [:]
 
     public init(
         onImported: (([ProgramFileImport.ImportedProgram], [UInt8]?) -> Void)? = nil,
@@ -193,6 +204,8 @@ public struct ImportProgramsView: View {
                 }
             }
         }
+        .onChange(of: selectedIDs) { _, _ in recomputeAssignmentCaches() }
+        .onChange(of: destinations) { _, _ in recomputeAssignmentCaches() }
     }
 
     private var importButtonTitle: String {
@@ -491,7 +504,13 @@ public struct ImportProgramsView: View {
     /// only ever the fallback. The popover itself has no such restriction:
     /// a user who already knows a C slot is blank can still hand-assign
     /// it there, same as before.
-    private var autoAssignments: [ProgramFileImport.ImportedProgram.ID: Destination] {
+    /// Recomputes `cachedAutoAssignments`/`importedByID` from scratch —
+    /// called once per actual state change (see the `.onChange`s on body),
+    /// never from inside a per-row accessor. Body/logic unchanged from the
+    /// original computed property; only *when* it runs changed.
+    private func recomputeAssignmentCaches() {
+        importedByID = Dictionary(uniqueKeysWithValues: imported.map { ($0.id, $0) })
+
         let totalSlots = ProgramSlot.letterCount * ProgramSlot.slotsPerLetter
         var claimed = Set(
             destinations
@@ -520,15 +539,15 @@ public struct ImportProgramsView: View {
             // to A.01, and the resulting duplicate is caught by
             // `isConflicting` same as any other collision.
         }
-        return result
+        cachedAutoAssignments = result
     }
 
     private func destination(for program: ProgramFileImport.ImportedProgram) -> Destination {
-        destinations[program.id] ?? autoAssignments[program.id] ?? Destination(letter: 0, slot: 0)
+        destinations[program.id] ?? cachedAutoAssignments[program.id] ?? Destination(letter: 0, slot: 0)
     }
 
     private func destinationFor(_ id: ProgramFileImport.ImportedProgram.ID) -> (bank: Int, patch: Int) {
-        guard let program = imported.first(where: { $0.id == id }) else { return (0, 0) }
+        guard let program = importedByID[id] else { return (0, 0) }
         let dest = destination(for: program)
         return ProgramSlot.resolve(letter: dest.letter, slot: dest.slot)
     }
@@ -555,7 +574,7 @@ public struct ImportProgramsView: View {
 
     private func selectedAssignments() -> [(program: ProgramFileImport.ImportedProgram, bank: Int, patch: Int)] {
         selectedIDs.compactMap { id in
-            guard let program = imported.first(where: { $0.id == id }) else { return nil }
+            guard let program = importedByID[id] else { return nil }
             let dest = destination(for: program)
             let resolved = ProgramSlot.resolve(letter: dest.letter, slot: dest.slot)
             return (program, resolved.bank, resolved.patch)
@@ -690,6 +709,7 @@ public struct ImportProgramsView: View {
                 self.destinations = [:]
                 self.activeBank = 0
                 self.popoverSlot = nil
+                self.recomputeAssignmentCaches()
                 // Parsing isn't applying: nothing reaches the browser or
                 // editor until the user taps one of the action buttons.
                 // A single `.prg` isn't "programs from" a container — name
