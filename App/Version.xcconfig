@@ -1,0 +1,5 @@
+// Single source of truth for the app version. The Xcode target reads these
+// build settings into Info.plist; bundle.sh reads this file directly; the
+// in-app footer reads CFBundleShortVersionString from the built bundle.
+MARKETING_VERSION = 1.0
+CURRENT_PROJECT_VERSION = 1

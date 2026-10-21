@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1000000000000000000B001 /* MKSoundEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F001 /* MKSoundEditorApp.swift */; };
+		A1000000000000000000B002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F004 /* PrivacyInfo.xcprivacy */; };
+		A1000000000000000000B003 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F005 /* AppIcon.icon */; };
+		A1000000000000000000B004 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F006 /* Fonts */; };
+		A1000000000000000000B005 /* MKSoundEditorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A1000000000000000000D001 /* MKSoundEditorKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1000000000000000000F001 /* MKSoundEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKSoundEditorApp.swift; path = ../Sources/MKSoundEditor/MKSoundEditorApp.swift; sourceTree = SOURCE_ROOT; };
+		A1000000000000000000F002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1000000000000000000F003 /* MKPatchLibrarian.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MKPatchLibrarian.entitlements; sourceTree = "<group>"; };
+		A1000000000000000000F004 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A1000000000000000000F005 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		A1000000000000000000F006 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../Resources/Fonts; sourceTree = SOURCE_ROOT; };
+		A1000000000000000000F007 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		A1000000000000000000F008 /* MK Patch Librarian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MK Patch Librarian.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1000000000000000000A002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000B005 /* MKSoundEditorKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000009001 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000009002 /* MKPatchLibrarian */,
+				A1000000000000000000F007 /* Version.xcconfig */,
+				A10000000000000000009003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000000000000000009002 /* MKPatchLibrarian */ = {
+			isa = PBXGroup;
+			children = (
+				A1000000000000000000F001 /* MKSoundEditorApp.swift */,
+				A1000000000000000000F005 /* AppIcon.icon */,
+				A1000000000000000000F006 /* Fonts */,
+				A1000000000000000000F002 /* Info.plist */,
+				A1000000000000000000F003 /* MKPatchLibrarian.entitlements */,
+				A1000000000000000000F004 /* PrivacyInfo.xcprivacy */,
+			);
+			path = MKPatchLibrarian;
+			sourceTree = "<group>";
+		};
+		A10000000000000000009003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1000000000000000000F008 /* MK Patch Librarian.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000008001 /* MKPatchLibrarian */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000005002 /* Build configuration list for PBXNativeTarget "MKPatchLibrarian" */;
+			buildPhases = (
+				A1000000000000000000A001 /* Sources */,
+				A1000000000000000000A002 /* Frameworks */,
+				A1000000000000000000A003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MKPatchLibrarian;
+			packageProductDependencies = (
+				A1000000000000000000D001 /* MKSoundEditorKit */,
+			);
+			productName = MKPatchLibrarian;
+			productReference = A1000000000000000000F008 /* MK Patch Librarian.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000007001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					A10000000000000000008001 = {
+						CreatedOnToolsVersion = 26.1;
+					};
+				};
+			};
+			buildConfigurationList = A10000000000000000005001 /* Build configuration list for PBXProject "MKPatchLibrarian" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000000000000000009001;
+			packageReferences = (
+				A10000000000000000006001 /* XCLocalSwiftPackageReference ".." */,
+			);
+			productRefGroup = A10000000000000000009003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000008001 /* MKPatchLibrarian */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1000000000000000000A003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000B003 /* AppIcon.icon in Resources */,
+				A1000000000000000000B004 /* Fonts in Resources */,
+				A1000000000000000000B002 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1000000000000000000A001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000B001 /* MKSoundEditorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1000000000000000000C001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1000000000000000000C002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A1000000000000000000C003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1000000000000000000F007 /* Version.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MKPatchLibrarian/MKPatchLibrarian.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MKPatchLibrarian/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.otonomee.mkpatchlibrarian;
+				PRODUCT_NAME = "MK Patch Librarian";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A1000000000000000000C004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1000000000000000000F007 /* Version.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MKPatchLibrarian/MKPatchLibrarian.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MKPatchLibrarian/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.otonomee.mkpatchlibrarian;
+				PRODUCT_NAME = "MK Patch Librarian";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000005001 /* Build configuration list for PBXProject "MKPatchLibrarian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000C001 /* Debug */,
+				A1000000000000000000C002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000005002 /* Build configuration list for PBXNativeTarget "MKPatchLibrarian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000C003 /* Debug */,
+				A1000000000000000000C004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A10000000000000000006001 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1000000000000000000D001 /* MKSoundEditorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MKSoundEditorKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A10000000000000000007001 /* Project object */;
+}

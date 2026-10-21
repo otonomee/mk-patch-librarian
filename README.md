@@ -41,6 +41,8 @@ Or to build a real `.app` bundle (needed for the app to get a dock icon and beco
 open build/MKSoundEditor.app
 ```
 
+Sandboxed, App Store–ready builds come from the Xcode project in `App/` — see [docs/APP_STORE.md](docs/APP_STORE.md).
+
 ## Usage
 
 1. Connect your microKORG via a MIDI interface

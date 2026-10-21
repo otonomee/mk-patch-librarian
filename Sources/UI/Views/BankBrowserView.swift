@@ -465,6 +465,14 @@ public struct BankBrowserView: View {
         withAnimation { toastMessage = nil }
     }
 
+    // A bare `swift run` binary has no Info.plist, hence the unversioned fallback.
+    private static let versionLabel: String = {
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+            return "MK Patch Librarian"
+        }
+        return "MK Patch Librarian v\(version)"
+    }()
+
     // The toast banner owns one-off status messages now; this bar is the
     // branded footer per the design brief — version on the left (replaced
     // by the loading spinner/error when there's something more pressing
@@ -479,7 +487,7 @@ public struct BankBrowserView: View {
                     .font(BrowserFont.inter(11))
                     .foregroundColor(.red)
             } else {
-                Text("MK Patch Librarian v1.0")
+                Text(Self.versionLabel)
                     .font(BrowserFont.inter(11))
                     .foregroundColor(.secondary)
             }

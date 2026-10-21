@@ -10,6 +10,9 @@ let package = Package(
     products: [
         .executable(name: "MKSoundEditor", targets: ["MKSoundEditor"]),
         .executable(name: "SmokeTest", targets: ["SmokeTest"]),
+        // Linked by the Xcode app target in App/ (App Store builds); the
+        // executable target above stays the `swift run`/bundle.sh entry point.
+        .library(name: "MKSoundEditorKit", targets: ["PBAPI", "Models", "UIViews", "UIControllers", "Utilities"]),
     ],
     targets: [
         // Core PBAPI module - MIDI communication layer
