@@ -607,7 +607,7 @@ extension MainWindowController {
                 VStack(spacing: 16) {
                     ProgressView()
                     Text(message)
-                        .font(.callout)
+                        .font(.custom("GolosText-Regular", size: 13))
                         .foregroundColor(.secondary)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
