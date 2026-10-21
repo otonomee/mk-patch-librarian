@@ -22,18 +22,19 @@ private enum BrowserPalette {
     static let blueSlate = Color(red: 0x5e / 255.0, green: 0x64 / 255.0, blue: 0x72 / 255.0)
 }
 
-/// Inter for general UI text, JetBrains Mono for patch slot IDs — bundled
-/// as static TTFs under Resources/Fonts, registered via the app bundle's
-/// ATSApplicationFontsPath (see bundle.sh), no system-wide install needed.
-/// Scoped to this screen like the palette above.
+/// Golos Text for general UI text, JetBrains Mono for patch slot IDs —
+/// bundled as static TTFs under Resources/Fonts, registered via the app
+/// bundle's ATSApplicationFontsPath (see bundle.sh), no system-wide install
+/// needed. Scoped to this screen like the palette above.
 private enum BrowserFont {
-    static func inter(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+    static func sans(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         let name: String
         switch weight {
-        case .bold, .heavy, .black: name = "Inter-ExtraBold"
-        case .semibold: name = "Inter-SemiBold"
-        case .medium: name = "Inter-Medium"
-        default: name = "Inter-Regular"
+        case .heavy, .black: name = "GolosText-Black"
+        case .bold: name = "GolosText-Bold"
+        case .semibold: name = "GolosText-SemiBold"
+        case .medium: name = "GolosText-Medium"
+        default: name = "GolosText-Regular"
         }
         return .custom(name, size: size)
     }
@@ -312,7 +313,7 @@ public struct BankBrowserView: View {
             HStack {
                 Spacer()
                 Text("Last opened: \(ProgramSlot.anyLabel(bank: bank, patch: patch))")
-                    .font(BrowserFont.inter(13, weight: .semibold))
+                    .font(BrowserFont.sans(13, weight: .semibold))
                     .foregroundColor(BrowserPalette.icyAqua)
             }
             .padding(.horizontal)
@@ -342,7 +343,7 @@ public struct BankBrowserView: View {
             } else {
                 Label(title, systemImage: icon)
                     .labelStyle(.titleAndIcon)
-                    .font(BrowserFont.inter(12, weight: .medium))
+                    .font(BrowserFont.sans(12, weight: .medium))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
             }
@@ -421,7 +422,7 @@ public struct BankBrowserView: View {
     private func letterBankGrid(letter: Int) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Bank \(ProgramSlot.bankLetter(letter))")
-                .font(BrowserFont.inter(13, weight: .semibold))
+                .font(BrowserFont.sans(13, weight: .semibold))
                 .foregroundColor(BrowserPalette.icyAqua)
 
             Grid(horizontalSpacing: 10, verticalSpacing: 10) {
@@ -455,7 +456,7 @@ public struct BankBrowserView: View {
     private var toastBanner: some View {
         if let toastMessage {
             Text(toastMessage)
-                .font(BrowserFont.inter(15, weight: .semibold))
+                .font(BrowserFont.sans(15, weight: .semibold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 16)
@@ -508,11 +509,11 @@ public struct BankBrowserView: View {
                     .scaleEffect(0.8)
             } else if let error = state.error {
                 Text(error.localizedDescription)
-                    .font(BrowserFont.inter(11))
+                    .font(BrowserFont.sans(11))
                     .foregroundColor(.red)
             } else {
                 Text(Self.versionLabel)
-                    .font(BrowserFont.inter(11))
+                    .font(BrowserFont.sans(11))
                     .foregroundColor(.secondary)
             }
 
@@ -528,7 +529,7 @@ public struct BankBrowserView: View {
                         .frame(width: 7, height: 7)
                 }
                 Text(!hasResolvedOnce ? "Checking…" : isConnected ? "Connected to microKORG" : "Not Connected")
-                    .font(BrowserFont.inter(11, weight: .medium))
+                    .font(BrowserFont.sans(11, weight: .medium))
                     .foregroundColor(hasResolvedOnce && isConnected ? BrowserPalette.mintLeaf : .secondary)
             }
 
@@ -566,7 +567,7 @@ private struct BankBrowserCell: View {
                     .foregroundColor(BrowserPalette.icyAqua)
 
                 Text(programName?.isEmpty == false ? programName! : "—")
-                    .font(BrowserFont.inter(12, weight: .medium))
+                    .font(BrowserFont.sans(12, weight: .medium))
                     .foregroundColor(BrowserPalette.eggshell.opacity(programName?.isEmpty == false ? 1 : 0.4))
                     .lineLimit(1)
                     .truncationMode(.tail)

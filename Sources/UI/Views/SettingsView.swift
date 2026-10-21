@@ -17,13 +17,14 @@ private enum SettingsPalette {
 }
 
 private enum SettingsFont {
-    static func inter(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+    static func sans(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         let name: String
         switch weight {
-        case .bold, .heavy, .black: name = "Inter-ExtraBold"
-        case .semibold: name = "Inter-SemiBold"
-        case .medium: name = "Inter-Medium"
-        default: name = "Inter-Regular"
+        case .heavy, .black: name = "GolosText-Black"
+        case .bold: name = "GolosText-Bold"
+        case .semibold: name = "GolosText-SemiBold"
+        case .medium: name = "GolosText-Medium"
+        default: name = "GolosText-Regular"
         }
         return .custom(name, size: size)
     }
@@ -85,7 +86,7 @@ public struct SettingsView: View {
                 HStack(spacing: 8) {
                     connectionIndicator
                     Text(connectionText)
-                        .font(SettingsFont.inter(13, weight: .medium))
+                        .font(SettingsFont.sans(13, weight: .medium))
                         .foregroundColor(connectionColor)
                 }
                 Spacer()
@@ -299,7 +300,7 @@ public struct SettingsView: View {
                 ProgressView().controlSize(.small)
             }
             Text(footerText)
-                .font(SettingsFont.inter(12, weight: .medium))
+                .font(SettingsFont.sans(12, weight: .medium))
                 .foregroundColor(model.statusIsError ? SettingsPalette.errorRed
                                  : model.status == "Saved to microKORG" ? SettingsPalette.mintLeaf
                                  : .secondary)
@@ -389,7 +390,7 @@ public struct SettingsView: View {
     private func card<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
-                .font(SettingsFont.inter(11, weight: .semibold))
+                .font(SettingsFont.sans(11, weight: .semibold))
                 .foregroundColor(SettingsPalette.icyAqua)
                 .textCase(.uppercase)
                 .tracking(0.8)
@@ -413,7 +414,7 @@ public struct SettingsView: View {
 
     private func rowLabel(_ text: String, indent: Bool = false) -> some View {
         Text(text)
-            .font(SettingsFont.inter(13))
+            .font(SettingsFont.sans(13))
             .foregroundColor(SettingsPalette.eggshell)
             .padding(.leading, indent ? 14 : 0)
     }
@@ -428,7 +429,7 @@ public struct SettingsView: View {
 
     private func caption(_ text: String, color: Color = .secondary) -> some View {
         Text(text)
-            .font(SettingsFont.inter(11))
+            .font(SettingsFont.sans(11))
             .foregroundColor(color)
             .fixedSize(horizontal: false, vertical: true)
             .padding(.top, 2)
@@ -440,7 +441,7 @@ public struct SettingsView: View {
         Button(action: action) {
             Label(title, systemImage: icon)
                 .labelStyle(.titleAndIcon)
-                .font(SettingsFont.inter(12, weight: .medium))
+                .font(SettingsFont.sans(12, weight: .medium))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
         }
@@ -497,7 +498,7 @@ private struct SettingsSegmented: View {
                 let isSelected = value == selection
                 Button { selection = value } label: {
                     Text(title)
-                        .font(SettingsFont.inter(12, weight: isSelected ? .semibold : .regular))
+                        .font(SettingsFont.sans(12, weight: isSelected ? .semibold : .regular))
                         .foregroundColor(isSelected ? SettingsPalette.windowBG : SettingsPalette.eggshell.opacity(0.8))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 5)
