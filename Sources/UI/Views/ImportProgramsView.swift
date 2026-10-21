@@ -17,6 +17,27 @@ private enum ImportPalette {
     static let deepSpaceBlue = Color(red: 0x17 / 255.0, green: 0x2a / 255.0, blue: 0x3a / 255.0)
 }
 
+/// Golos Text for general UI text, JetBrains Mono for patch slot IDs —
+/// same split and bundling as BrowserFont/SettingsFont. Scoped to this
+/// screen like the palette above.
+private enum ImportFont {
+    static func sans(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        let name: String
+        switch weight {
+        case .heavy, .black: name = "GolosText-Black"
+        case .bold: name = "GolosText-Bold"
+        case .semibold: name = "GolosText-SemiBold"
+        case .medium: name = "GolosText-Medium"
+        default: name = "GolosText-Regular"
+        }
+        return .custom(name, size: size)
+    }
+
+    static func mono(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        .custom(weight == .regular ? "JetBrainsMono-Regular" : "JetBrainsMono-SemiBold", size: size)
+    }
+}
+
 /// Sheet for importing microKORG program files (.prg, .set, .syx).
 public struct ImportProgramsView: View {
 
@@ -109,7 +130,7 @@ public struct ImportProgramsView: View {
         VStack(spacing: 16) {
             HStack {
                 Text("Import Programs")
-                    .font(.headline)
+                    .font(ImportFont.sans(17, weight: .bold))
                 Spacer()
                 Button("Done", action: onDismiss)
                     .keyboardShortcut(.escape, modifiers: [])
@@ -130,7 +151,7 @@ public struct ImportProgramsView: View {
                             .controlSize(.small)
                     }
                     Text(status)
-                        .font(.system(size: 13))
+                        .font(ImportFont.sans(13))
                         .foregroundColor(.secondary)
                 }
             }
@@ -164,7 +185,7 @@ public struct ImportProgramsView: View {
                     if selectedIDs.count == 1 {
                         Toggle("Open in editor after importing", isOn: $openAfterImport)
                             .toggleStyle(.checkbox)
-                            .font(.system(size: 12))
+                            .font(ImportFont.sans(12))
                             .foregroundColor(.secondary)
                     }
 
@@ -252,7 +273,7 @@ public struct ImportProgramsView: View {
     private func sourceQueue() -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Source Queue")
-                .font(.system(size: 11, weight: .semibold))
+                .font(ImportFont.sans(11, weight: .semibold))
                 .foregroundColor(.secondary)
 
             ScrollView {
@@ -263,7 +284,7 @@ public struct ImportProgramsView: View {
                                 .toggleStyle(.checkbox)
                                 .labelsHidden()
                             Text(program.name)
-                                .font(.system(size: 13))
+                                .font(ImportFont.sans(13))
                                 .lineLimit(1)
                             Spacer()
                         }
@@ -294,7 +315,7 @@ public struct ImportProgramsView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text("Destination Map")
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(ImportFont.sans(11, weight: .semibold))
                     .foregroundColor(.secondary)
                 Spacer()
                 Picker("", selection: $activeBank) {
@@ -395,18 +416,18 @@ public struct ImportProgramsView: View {
 
         HStack(spacing: 8) {
             Text(ProgramSlot.letterSlotLabel(slot))
-                .font(.system(size: 12.5, design: .monospaced))
+                .font(ImportFont.mono(12.5))
                 .foregroundColor(ImportPalette.blueSlate)
                 .frame(width: 26, alignment: .leading)
 
             if let assignedProgram {
                 Text("\u{2192} \(assignedProgram.name)")
-                    .font(.system(size: 12.5, weight: .semibold))
+                    .font(ImportFont.sans(12.5, weight: .semibold))
                     .foregroundColor(isOverwrite ? ImportPalette.powderBlush : ImportPalette.icyAqua)
                     .lineLimit(1)
             } else {
                 Text(existingOccupant ?? (isKnown ? "(empty)" : "(not read yet)"))
-                    .font(.system(size: 12.5, weight: existingOccupant != nil ? .semibold : .regular))
+                    .font(ImportFont.sans(12.5, weight: existingOccupant != nil ? .semibold : .regular))
                     .italic(!isKnown)
                     .foregroundColor(existingOccupant != nil ? ImportPalette.eggshell : ImportPalette.blueSlate)
                     .lineLimit(1)
@@ -416,7 +437,7 @@ public struct ImportProgramsView: View {
 
             if isOverwrite, let existingOccupant {
                 Text("Overwrites \u{201C}\(existingOccupant)\u{201D}")
-                    .font(.system(size: 10.5, weight: .medium))
+                    .font(ImportFont.sans(10.5, weight: .medium))
                     .foregroundColor(ImportPalette.powderBlush)
             }
         }
@@ -456,7 +477,7 @@ public struct ImportProgramsView: View {
 
         VStack(alignment: .leading, spacing: 10) {
             Text("Slot \(ProgramSlot.letterSlotLabel(slot))")
-                .font(.system(size: 12, weight: .semibold))
+                .font(ImportFont.sans(12, weight: .semibold))
 
             Picker("Replace with", selection: Binding<ProgramFileImport.ImportedProgram.ID?>(
                 get: { current?.id },
@@ -599,7 +620,7 @@ public struct ImportProgramsView: View {
         let isProminent = prominent && !disabled
         Button(action: action) {
             Label(title, systemImage: icon)
-                .font(.system(size: 12, weight: .medium))
+                .font(ImportFont.sans(12, weight: .medium))
                 .lineLimit(1)
                 .fixedSize(horizontal: true, vertical: false)
                 .padding(.horizontal, 12)
