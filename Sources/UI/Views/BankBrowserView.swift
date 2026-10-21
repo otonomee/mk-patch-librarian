@@ -50,6 +50,32 @@ private enum BrowserFont {
     }
 }
 
+/// The app's own 7-bar waveform mark (same motif as `Resources/.../AppIcon.icon`,
+/// generated via `Scripts/GenerateIcon.swift`), drawn as vector shapes instead
+/// of a bundled bitmap — this toolbar placement is tiny and SwiftUI-native
+/// already, so there's no need for Bundle.module resource plumbing that the
+/// package doesn't otherwise have, and it stays crisp at any scale.
+private struct AppIconGlyph: View {
+    private static let barHeights: [CGFloat] = [0.28, 0.55, 0.82, 1.0, 0.82, 0.55, 0.28]
+
+    var body: some View {
+        GeometryReader { geo in
+            let size = min(geo.size.width, geo.size.height)
+            let barWidth = size * 0.11
+            let gap = size * 0.07
+            HStack(alignment: .center, spacing: gap) {
+                ForEach(Array(Self.barHeights.enumerated()), id: \.offset) { _, fraction in
+                    Capsule()
+                        .fill(BrowserPalette.icyAqua)
+                        .frame(width: barWidth, height: size * fraction)
+                }
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
+        .frame(width: 16, height: 16)
+    }
+}
+
 /// Main bank browser view - allows selecting banks and patches
 public struct BankBrowserView: View {
 
@@ -240,11 +266,9 @@ public struct BankBrowserView: View {
                 // macOS already left-aligns it next to this once the
                 // toolbar has other content, so this just adds the icon.
                 ToolbarItem(placement: .navigation) {
-                    Text("MK")
-                        .font(BrowserFont.inter(12, weight: .heavy))
-                        .foregroundColor(BrowserPalette.deepSpaceBlue)
+                    AppIconGlyph()
                         .padding(5)
-                        .background(Circle().fill(BrowserPalette.icyAqua))
+                        .background(Circle().fill(BrowserPalette.deepSpaceBlue))
                 }
 
                 ToolbarItem(placement: .primaryAction) {
