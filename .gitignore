@@ -1,0 +1,25 @@
+# SwiftPM / Xcode build output
+.build/
+build/
+.swiftpm/
+DerivedData/
+*.app/
+*.xcarchive/
+*.dSYM/
+*.ipa
+*.pkg
+
+# Xcode per-user state
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# MIDI captures (may contain factory/third-party patch data)
+*.syx
+
+# macOS
+.DS_Store
+
+# Local tooling state
+.autopilot/
+.serena/
