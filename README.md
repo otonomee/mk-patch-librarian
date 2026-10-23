@@ -14,6 +14,12 @@ A free, open-source editor/librarian for the Korg microKORG family over MIDI Sys
 
 Developed and tested against a microKORG S over a 5-pin DIN USB-MIDI interface (Roland UM-ONE). The original microKORG shares the same A/B program format but hasn't been hardware-tested.
 
+## Screenshots
+
+| Bank Browser | Patch Editor | Settings |
+|---|---|---|
+| ![Bank Browser](docs/screenshots/bank-browser.png) | ![Patch Editor](docs/screenshots/editor.png) | ![Settings](docs/screenshots/settings.png) |
+
 ## Requirements
 
 - macOS 14.0 or later
