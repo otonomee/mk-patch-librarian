@@ -23,3 +23,7 @@ xcuserdata/
 # Local tooling state
 .autopilot/
 .serena/
+
+# network scan output — never commit
+nmap*.txt
+*nmap*output*
