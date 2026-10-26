@@ -4,11 +4,18 @@ For Apple's Guideline 2.1 request: a screen recording on a physical device, star
 
 ## Before you hit record
 
-- Quit any running copy of the app first.
-- Plug in the MIDI interface (UM-ONE) and power on the microKORG — do this *before* you start recording so the first launch can show a real connection, not a "searching" state sitting there for a minute.
-- Close Slack/Messages/anything that could pop a notification mid-recording.
-- Open QuickTime Player → File → New Screen Recording → **record the whole screen**, not a selected window. The app window doesn't exist yet at this point (you haven't launched it), so there's nothing to click-select — QuickTime can only snap to a specific window's bounds *after* that window is already open, which would miss the actual launch moment Apple wants to see. Full screen is the simplest correct choice; a bit of desktop around the window in the final video is fine.
-- Click Record, *then* launch the app from Applications/Dock as your first on-camera action.
+Two separate launches here — one to set up, one that's actually recorded. Don't skip the first one or the recorded launch will sit on a spinner for close to a minute.
+
+**Setup (not recorded):**
+1. Plug in the MIDI interface (UM-ONE) and power on the microKORG.
+2. Launch the app once — the real submission build (the one from `App/MKPatchLibrarian.xcodeproj`, not the plain dev build from `bundle.sh`; they're sandboxed separately and don't share settings).
+3. Press ⌘, to open Settings. Click the "Preferred port" dropdown and select "UM-ONE". That's it — one dropdown, one click. This makes the *next* launch connect in ~2.5s instead of up to a minute.
+4. Quit the app completely.
+5. Close Slack/Messages/anything that could pop a notification mid-recording.
+
+**Then, for the actual recording:**
+6. Open QuickTime Player → File → New Screen Recording → **record the whole screen**, not a selected window. The app window doesn't exist yet at this point (you haven't launched it for this take), so there's nothing to click-select — QuickTime can only snap to a specific window's bounds *after* that window is already open, which would miss the actual launch moment Apple wants to see. Full screen is the simplest correct choice; a bit of desktop around the window in the final video is fine.
+7. Click Record, *then* launch the app as your first on-camera action — this is beat 1 below, and thanks to step 3 it should connect fast instead of stalling.
 
 ## Beats to hit, in order
 
