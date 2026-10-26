@@ -6,8 +6,9 @@ For Apple's Guideline 2.1 request: a screen recording on a physical device, star
 
 - Quit any running copy of the app first.
 - Plug in the MIDI interface (UM-ONE) and power on the microKORG — do this *before* you start recording so the first launch can show a real connection, not a "searching" state sitting there for a minute.
-- Open QuickTime Player → File → New Screen Recording → select the window (not full screen, keeps the file smaller and the focus on the app) → Record.
 - Close Slack/Messages/anything that could pop a notification mid-recording.
+- Open QuickTime Player → File → New Screen Recording → **record the whole screen**, not a selected window. The app window doesn't exist yet at this point (you haven't launched it), so there's nothing to click-select — QuickTime can only snap to a specific window's bounds *after* that window is already open, which would miss the actual launch moment Apple wants to see. Full screen is the simplest correct choice; a bit of desktop around the window in the final video is fine.
+- Click Record, *then* launch the app from Applications/Dock as your first on-camera action.
 
 ## Beats to hit, in order
 
