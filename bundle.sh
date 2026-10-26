@@ -16,7 +16,7 @@ BUILD=$(sed -n 's/^CURRENT_PROJECT_VERSION *= *//p' App/Version.xcconfig)
 
 swift build -c release --product MKSoundEditor
 
-APP="build/MKSoundEditor.app"
+APP="build/MK Patch Librarian.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS"
 mkdir -p "$APP/Contents/Resources/Fonts"

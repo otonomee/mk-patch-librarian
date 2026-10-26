@@ -62,8 +62,13 @@ private struct AppIconGlyph: View {
     var body: some View {
         GeometryReader { geo in
             let size = min(geo.size.width, geo.size.height)
-            let barWidth = size * 0.11
-            let gap = size * 0.07
+            // 7 bars + 6 gaps must sum to exactly `size` — the old fixed
+            // fractions (0.11 width / 0.07 gap) summed to ~19pt at size=16,
+            // overflowing the frame by 3pt and poking past the circular
+            // background's curve, which is what made it look oval instead
+            // of round. Solving 7b + 6g = size with g = 0.6b fixes that.
+            let barWidth = size / 10.6
+            let gap = barWidth * 0.6
             HStack(alignment: .center, spacing: gap) {
                 ForEach(Array(Self.barHeights.enumerated()), id: \.offset) { _, fraction in
                     Capsule()
@@ -73,7 +78,7 @@ private struct AppIconGlyph: View {
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
-        .frame(width: 16, height: 16)
+        .frame(width: 24, height: 24)
     }
 }
 
@@ -266,10 +271,20 @@ public struct BankBrowserView: View {
                 // window title text stays on `.navigationTitle` below;
                 // macOS already left-aligns it next to this once the
                 // toolbar has other content, so this just adds the icon.
-                ToolbarItem(placement: .navigation) {
-                    AppIconGlyph()
-                        .padding(5)
-                        .background(Circle().fill(BrowserPalette.deepSpaceBlue))
+                // macOS 26 wraps every toolbar item in a Liquid Glass capsule.
+                // That capsule is drawn by the toolbar container, not by this
+                // content, so no amount of .background/.clipShape on the glyph
+                // can reshape or remove it — `sharedBackgroundVisibility` is
+                // the only lever, and it only exists on 26+.
+                if #available(macOS 26.0, *) {
+                    ToolbarItem(placement: .navigation) {
+                        AppIconGlyph()
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+                } else {
+                    ToolbarItem(placement: .navigation) {
+                        AppIconGlyph()
+                    }
                 }
 
                 ToolbarItem(placement: .primaryAction) {
