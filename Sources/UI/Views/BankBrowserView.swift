@@ -87,6 +87,11 @@ public struct BankBrowserView: View {
 
     @StateObject private var state = BankBrowserState()
     @Environment(\.dismiss) private var dismiss
+    // ⌘, and the app-menu "Settings…" item both already open this — most
+    // users never find either, so a visible toolbar button is the real
+    // discovery path. `openSettings` is the SwiftUI-native way to trigger
+    // the same `Settings { }` scene from MKPatchLibrarianApp.swift.
+    @Environment(\.openSettings) private var openSettings
 
     /// Callback fired when a bank/patch is chosen for editing.
     public var onEditTapped: ((Int, Int) -> Void)?
@@ -285,6 +290,17 @@ public struct BankBrowserView: View {
                     ToolbarItem(placement: .navigation) {
                         AppIconGlyph()
                     }
+                }
+
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { openSettings() }) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 15, weight: .medium))
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundColor(BrowserPalette.icyAqua)
+                    .help("Settings — MIDI connection and the synth's global settings")
+                    .pointerCursor()
                 }
 
                 ToolbarItem(placement: .primaryAction) {
