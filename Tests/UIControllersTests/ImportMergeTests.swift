@@ -16,7 +16,7 @@ final class ImportMergeTests: XCTestCase {
         super.setUp()
         // Redirect session-state persistence to a scratch directory so these
         // tests never read or overwrite the real saved bank in
-        // ~/Library/Application Support/MKSoundEditor.
+        // ~/Library/Application Support/MKPatchLibrarian.
         tempDir = FileManager.default.temporaryDirectory
             .appendingPathComponent("ImportMergeTests-\(UUID().uuidString)", isDirectory: true)
         MainWindowController.sessionStateDirectory = tempDir

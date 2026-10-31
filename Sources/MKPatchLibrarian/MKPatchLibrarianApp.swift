@@ -8,7 +8,7 @@ import UIViews
 /// A free, open-source editor/librarian for Korg microKORG and other
 /// synthesizers via MIDI.
 @main
-struct MKSoundEditorApp: App {
+struct MKPatchLibrarianApp: App {
 
     @StateObject private var mainWindowController = MainWindowController()
 

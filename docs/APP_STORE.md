@@ -6,7 +6,7 @@ App Store builds come from the Xcode project in `App/`, which wraps the Swift pa
 
 | Path | Purpose |
 |---|---|
-| `App/MKPatchLibrarian.xcodeproj` | macOS app target linking the package's `MKSoundEditorKit` library product |
+| `App/MKPatchLibrarian.xcodeproj` | macOS app target linking the package's `MKPatchLibrarianKit` library product |
 | `App/Version.xcconfig` | `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION` — the only place the version is set |
 | `App/MKPatchLibrarian/Info.plist` | category, encryption declaration, font path |
 | `App/MKPatchLibrarian/MKPatchLibrarian.entitlements` | App Sandbox + user-selected read-only file access |
@@ -20,7 +20,7 @@ The bundle identifier is `com.otonomee.mkpatchlibrarian`. Change `PRODUCT_BUNDLE
 
 - CoreMIDI needs no entitlement. The sandboxed build finds the synth behind a USB-MIDI interface and reads/writes SysEx normally.
 - Imports through `NSOpenPanel` work under `files.user-selected.read-only`. Drag-and-drop should get the same access (macOS grants a sandbox extension to dropped files) but hasn't been tested in the sandboxed build yet.
-- Session state lives in `~/Library/Containers/com.otonomee.mkpatchlibrarian/Data/Library/Application Support/MKSoundEditor/`, separate from the development build's `~/Library/Application Support/MKSoundEditor/`.
+- Session state lives in `~/Library/Containers/com.otonomee.mkpatchlibrarian/Data/Library/Application Support/MKPatchLibrarian/`, separate from the development build's `~/Library/Application Support/MKPatchLibrarian/`.
 
 ## Submitting
 

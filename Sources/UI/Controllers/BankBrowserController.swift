@@ -77,11 +77,11 @@ public class MainWindowController: ObservableObject {
     /// Where session state (whatever bank was last imported or pulled from
     /// the synth) persists between launches. A `static var`, not a constant,
     /// so tests can redirect it to a temp directory instead of touching the
-    /// real one. Defaults to `~/Library/Application Support/MKSoundEditor/`.
+    /// real one. Defaults to `~/Library/Application Support/MKPatchLibrarian/`.
     static var sessionStateDirectory: URL = {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? FileManager.default.temporaryDirectory
-        return base.appendingPathComponent("MKSoundEditor", isDirectory: true)
+        return base.appendingPathComponent("MKPatchLibrarian", isDirectory: true)
     }()
 
     private static var sessionBankURL: URL {
@@ -437,7 +437,7 @@ public class MainWindowController: ObservableObject {
     /// and gives the browser names without requiring the synth to be connected.
     private func loadPinnedBankIfAvailable() {
         let url = FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("dev/MKSoundEditor/bank-capture.syx")
+            .appendingPathComponent("dev/MKPatchLibrarian/bank-capture.syx")
         guard let data = try? Data(contentsOf: url) else { return }
         guard let programs = try? ProgramFileImport.programs(from: Array(data)),
               programs.count == KorgSysEx.programsPerBank else { return }

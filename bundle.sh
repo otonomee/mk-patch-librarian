@@ -14,14 +14,14 @@ export DEVELOPER_DIR=${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer
 VERSION=$(sed -n 's/^MARKETING_VERSION *= *//p' App/Version.xcconfig)
 BUILD=$(sed -n 's/^CURRENT_PROJECT_VERSION *= *//p' App/Version.xcconfig)
 
-swift build -c release --product MKSoundEditor
+swift build -c release --product MKPatchLibrarian
 
 APP="build/MK Patch Librarian.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS"
 mkdir -p "$APP/Contents/Resources/Fonts"
 
-cp "$(swift build -c release --show-bin-path)/MKSoundEditor" "$APP/Contents/MacOS/MKSoundEditor"
+cp "$(swift build -c release --show-bin-path)/MKPatchLibrarian" "$APP/Contents/MacOS/MKPatchLibrarian"
 cp Resources/Fonts/*.ttf "$APP/Contents/Resources/Fonts/"
 
 # Compiles the Icon Composer icon to Assets.car (macOS 26+) plus an
@@ -41,10 +41,10 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <dict>
     <key>CFBundleName</key>            <string>MK Patch Librarian</string>
     <key>CFBundleDisplayName</key>     <string>MK Patch Librarian</string>
-    <key>CFBundleIdentifier</key>      <string>local.mksoundeditor</string>
+    <key>CFBundleIdentifier</key>      <string>local.mkpatchlibrarian</string>
     <key>CFBundleVersion</key>         <string>${BUILD}</string>
     <key>CFBundleShortVersionString</key><string>${VERSION}</string>
-    <key>CFBundleExecutable</key>      <string>MKSoundEditor</string>
+    <key>CFBundleExecutable</key>      <string>MKPatchLibrarian</string>
     <key>CFBundleIconFile</key>        <string>AppIcon</string>
     <key>CFBundleIconName</key>        <string>AppIcon</string>
     <key>CFBundlePackageType</key>     <string>APPL</string>

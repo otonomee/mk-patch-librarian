@@ -28,7 +28,7 @@ if [ $? -eq 0 ]; then
     echo "Build successful!"
     
     # Find the executable
-    BINARY_PATH=$(find . -name "*MKSoundEditor*" -type f | head -1)
+    BINARY_PATH="$(swift build --package-path . -c release --show-bin-path)/MKPatchLibrarian"
     
     if [ -n "$BINARY_PATH" ]; then
         echo ""

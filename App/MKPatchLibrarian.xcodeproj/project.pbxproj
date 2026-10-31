@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1000000000000000000B001 /* MKSoundEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F001 /* MKSoundEditorApp.swift */; };
+		A1000000000000000000B001 /* MKPatchLibrarianApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F001 /* MKPatchLibrarianApp.swift */; };
 		A1000000000000000000B002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F004 /* PrivacyInfo.xcprivacy */; };
 		A1000000000000000000B003 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F005 /* AppIcon.icon */; };
 		A1000000000000000000B004 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000F006 /* Fonts */; };
-		A1000000000000000000B005 /* MKSoundEditorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A1000000000000000000D001 /* MKSoundEditorKit */; };
+		A1000000000000000000B005 /* MKPatchLibrarianKit in Frameworks */ = {isa = PBXBuildFile; productRef = A1000000000000000000D001 /* MKPatchLibrarianKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A1000000000000000000F001 /* MKSoundEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKSoundEditorApp.swift; path = ../Sources/MKSoundEditor/MKSoundEditorApp.swift; sourceTree = SOURCE_ROOT; };
+		A1000000000000000000F001 /* MKPatchLibrarianApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKPatchLibrarianApp.swift; path = ../Sources/MKPatchLibrarian/MKPatchLibrarianApp.swift; sourceTree = SOURCE_ROOT; };
 		A1000000000000000000F002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1000000000000000000F003 /* MKPatchLibrarian.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MKPatchLibrarian.entitlements; sourceTree = "<group>"; };
 		A1000000000000000000F004 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -30,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1000000000000000000B005 /* MKSoundEditorKit in Frameworks */,
+				A1000000000000000000B005 /* MKPatchLibrarianKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +49,7 @@
 		A10000000000000000009002 /* MKPatchLibrarian */ = {
 			isa = PBXGroup;
 			children = (
-				A1000000000000000000F001 /* MKSoundEditorApp.swift */,
+				A1000000000000000000F001 /* MKPatchLibrarianApp.swift */,
 				A1000000000000000000F005 /* AppIcon.icon */,
 				A1000000000000000000F006 /* Fonts */,
 				A1000000000000000000F002 /* Info.plist */,
@@ -84,7 +84,7 @@
 			);
 			name = MKPatchLibrarian;
 			packageProductDependencies = (
-				A1000000000000000000D001 /* MKSoundEditorKit */,
+				A1000000000000000000D001 /* MKPatchLibrarianKit */,
 			);
 			productName = MKPatchLibrarian;
 			productReference = A1000000000000000000F008 /* MK Patch Librarian.app */;
@@ -143,7 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1000000000000000000B001 /* MKSoundEditorApp.swift in Sources */,
+				A1000000000000000000B001 /* MKPatchLibrarianApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +274,9 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A1000000000000000000D001 /* MKSoundEditorKit */ = {
+		A1000000000000000000D001 /* MKPatchLibrarianKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = MKSoundEditorKit;
+			productName = MKPatchLibrarianKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

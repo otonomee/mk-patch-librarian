@@ -109,7 +109,7 @@ public enum MIDIOutputPort {
 
         var newClient: MIDIClientRef = 0
         var status = MIDIClientCreateWithBlock(
-            "MKSoundEditor" as CFString,
+            "MK Patch Librarian" as CFString,
             &newClient
         ) { _ in
             // Device list changed. Enumeration is lazy, so nothing to do here;
@@ -122,7 +122,7 @@ public enum MIDIOutputPort {
         client = newClient
 
         var newOutPort: MIDIPortRef = 0
-        status = MIDIOutputPortCreate(client, "MKSoundEditor out" as CFString, &newOutPort)
+        status = MIDIOutputPortCreate(client, "MK Patch Librarian out" as CFString, &newOutPort)
         guard status == noErr else {
             print("MIDIOutputPortCreate failed: \(MIDIError.system(status).localizedDescription)")
             return false
@@ -132,7 +132,7 @@ public enum MIDIOutputPort {
         var newInPort: MIDIPortRef = 0
         status = MIDIInputPortCreateWithBlock(
             client,
-            "MKSoundEditor in" as CFString,
+            "MK Patch Librarian in" as CFString,
             &newInPort
         ) { packetList, _ in
             ingest(packetList: packetList)

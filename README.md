@@ -37,14 +37,14 @@ export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 
 ```bash
 swift build --package-path .
-swift run MKSoundEditor
+swift run MKPatchLibrarian
 ```
 
 Or to build a real `.app` bundle (needed for the app to get a dock icon and become the active app). Quit any running copy first:
 
 ```bash
 ./bundle.sh
-open build/MKSoundEditor.app
+open "build/MK Patch Librarian.app"
 ```
 
 Sandboxed, App Store–ready builds come from the Xcode project in `App/` — see [docs/APP_STORE.md](docs/APP_STORE.md).

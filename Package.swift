@@ -2,17 +2,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "MKSoundEditor",
+    name: "MKPatchLibrarian",
     platforms: [
         // .v14 so the #Preview macro (macOS 14+) is available in the UI targets.
         .macOS(.v14),
     ],
     products: [
-        .executable(name: "MKSoundEditor", targets: ["MKSoundEditor"]),
+        .executable(name: "MKPatchLibrarian", targets: ["MKPatchLibrarian"]),
         .executable(name: "SmokeTest", targets: ["SmokeTest"]),
         // Linked by the Xcode app target in App/ (App Store builds); the
         // executable target above stays the `swift run`/bundle.sh entry point.
-        .library(name: "MKSoundEditorKit", targets: ["PBAPI", "Models", "UIViews", "UIControllers", "Utilities"]),
+        .library(name: "MKPatchLibrarianKit", targets: ["PBAPI", "Models", "UIViews", "UIControllers", "Utilities"]),
     ],
     targets: [
         // Core PBAPI module - MIDI communication layer
@@ -47,14 +47,15 @@ let package = Package(
         ),
         // Main executable - depends on all modules
         .executableTarget(
-            name: "MKSoundEditor",
+            name: "MKPatchLibrarian",
             dependencies: [
                 "PBAPI",
                 "Models",
                 "UIViews",
                 "UIControllers",
                 "Utilities"
-            ]
+            ],
+            path: "Sources/MKPatchLibrarian"
         ),
         // Hardware smoke test CLI (endpoints + SysEx round-trip hexdump)
         .executableTarget(
